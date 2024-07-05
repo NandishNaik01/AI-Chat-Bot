@@ -1,6 +1,10 @@
 
 # Chatbot Application
 
+
+https://github.com/NandishNaik01/AI-Chat-Bot/assets/147323163/2898a70a-b20e-40e4-9785-b9c288d8e723
+
+
 This project is a chatbot application built using React for the frontend and Express with Groq AI for the backend. The application allows users to input prompts and receive responses in a chat-like interface.
 
 ## Screenshots
