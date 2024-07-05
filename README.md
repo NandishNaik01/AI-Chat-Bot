@@ -36,7 +36,7 @@ This project is a chatbot application built using React for the frontend and Exp
 ## Technologies Used
 
 - Frontend: React, Axios
-- Backend: Node.js, Express, Groq AI SDK
+- Backend: Node.js,Nodemon, Express, Groq AI SDK
 - Styling: CSS
 
 ## Setup Instructions
