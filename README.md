@@ -1,4 +1,4 @@
-````markdown
+
 # Chatbot Application
 
 This project is a chatbot application built using React for the frontend and Express with Groq AI for the backend. The application allows users to input prompts and receive responses in a chat-like interface.
@@ -48,7 +48,7 @@ This project is a chatbot application built using React for the frontend and Exp
    ```sh
    git clone https://github.com/yourusername/chatbot-app.git
    ```
-````
+
 
 2. Navigate to the backend directory:
    ```sh
@@ -98,6 +98,4 @@ This project is a chatbot application built using React for the frontend and Exp
 
 This project has No license make sure freely however you want
 
-```
 
-```
