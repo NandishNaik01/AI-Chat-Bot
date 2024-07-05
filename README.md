@@ -5,9 +5,12 @@ This project is a chatbot application built using React for the frontend and Exp
 
 ## Screenshots
 
-![Chat Interface](path/to/screenshot1.png)
-![Prompt Input](path/to/screenshot2.png)
-![Response Display](path/to/screenshot3.png)
+![Un Prompted](https://github.com/NandishNaik01/AI-Chat-Bot/assets/147323163/da7af208-e740-42d2-b0c5-a913565e9943)
+
+---
+
+![Prompted](https://github.com/NandishNaik01/AI-Chat-Bot/assets/147323163/e41b8945-e318-48f5-8d78-5af8dd027fa8)
+
 
 ## Table of Contents
 
