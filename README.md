@@ -83,7 +83,7 @@ This project is a chatbot application built using React for the frontend and Exp
    ```
 3. Start the development server:
    ```sh
-   npm start
+   npm run dev
    ```
 
 ## Usage
