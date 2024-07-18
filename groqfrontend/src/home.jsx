@@ -5,6 +5,8 @@ import "./home.css";
 function Home() {
   const [prompt, setPrompt] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
+  const [version, setVersion] = useState("");
+  const [healthStatus, setHealthStatus] = useState("");
 
   const handleChange = (event) => {
     setPrompt(event.target.value);
@@ -27,6 +29,29 @@ function Home() {
       });
   };
 
+  const fetchVersion = () => {
+    axios
+      .get("http://localhost:3000/version.json")
+      .then((response) => {
+        setVersion(response.data.version);
+      })
+      .catch((error) => {
+        console.error("Error fetching version:", error);
+      });
+  };
+
+  const fetchHealthStatus = () => {
+    axios
+      .get("http://localhost:3000/healthcheck")
+      .then((response) => {
+        setHealthStatus("Status: OK");
+      })
+      .catch((error) => {
+        setHealthStatus(`Status: ERROR - ${error.response.data.error}`);
+        console.error("Error fetching health status:", error);
+      });
+  };
+
   return (
     <div className="container">
       <div className="chat-box">
@@ -35,7 +60,8 @@ function Home() {
             <div className="user-prompt">{message.prompt}</div>
             <div
               className="bot-response"
-              dangerouslySetInnerHTML={{ __html: message.response }}></div>
+              dangerouslySetInnerHTML={{ __html: message.response }}
+            ></div>
           </div>
         ))}
       </div>
@@ -50,6 +76,18 @@ function Home() {
         <button className="button" onClick={handleSubmit}>
           Send
         </button>
+      </div>
+      <div className="info-container">
+        <button className="button" onClick={fetchVersion}>
+          Get Version
+        </button>
+        {version && <div className="version-info">Version: {version}</div>}
+        <button className="button" onClick={fetchHealthStatus}>
+          Check Health
+        </button>
+        {healthStatus && (
+          <div className="health-status">{healthStatus}</div>
+        )}
       </div>
     </div>
   );

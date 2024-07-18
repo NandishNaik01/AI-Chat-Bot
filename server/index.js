@@ -2,6 +2,7 @@ const express = require("express");
 const Groq = require("groq-sdk");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const { execSync } = require("child_process");
 
 dotenv.config();
 
@@ -24,23 +25,6 @@ async function getGroqChatCompletion(prompt) {
   });
 }
 
-// Handle GET request with query parameter
-app.get("/chat", async (req, res) => {
-  const { prompt } = req.query;
-
-  if (!prompt) {
-    return res.status(400).send("Missing prompt query parameter");
-  }
-
-  try {
-    const chatCompletion = await getGroqChatCompletion(prompt);
-    res.send(chatCompletion.choices[0]?.message?.content || "");
-  } catch (error) {
-    console.error("Error querying Groq AI:", error);
-    res.status(500).send("Error querying Groq AI");
-  }
-});
-
 // Handle POST request
 app.post("/chat", async (req, res) => {
   const { prompt } = req.query;
@@ -56,6 +40,27 @@ app.post("/chat", async (req, res) => {
     console.error("Error querying Groq AI:", error);
     res.status(500).send("Error querying Groq AI");
   }
+});
+
+// Version route
+app.get("/version.json", (req, res) => {
+  try {
+    const version = execSync("git rev-parse --short HEAD").toString().trim();
+    res.json({ version });
+  } catch (error) {
+    console.error("Error getting version:", error);
+    res.status(500).send("Error getting version");
+  }
+});
+
+// Healthcheck route
+app.get("/healthcheck", (req, res) => {
+  if (!process.env.GROQ_API_KEY) {
+    return res.status(500).json({ error: "GROQ_API_KEY is not defined" });
+  }
+
+  // Additional diagnostic checks can be added here
+  res.status(200).json({ status: "ok" });
 });
 
 app.listen(port, () => {
